@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazar las copas</title>
+    <link rel="stylesheet" href="/styles.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <header class="header">
+        <h1>Bazar Las copas 🥂 </h1>
+        <div class="navbar-botones">
+
+            <button class="navbar-botones-boton" name="clientes">Clientes</button>
+            <button class="navbar-botones-boton" name="productos">Productos</button>
+            <button class="navbar-botones-boton" name="ventas">Ventas</button>
+
+        </div>
+    </header>
+
+    <div class="secciones">
+        <section class="cliente" id="seccionClientes">
+            <div class="cliente-titulo">
+                <h4>Clientes</h4>
+            </div>
+            <div class="cliente-contenedor_tabla">
+                <table id="cliente-contenedor_tabla-tabla">
+                    <thead>
+                        <th class="tabla-titulo">Id</th>
+                        <th class="tabla-titulo">Nombre</th>
+                        <th class="tabla-titulo">Apellido</th>
+                        <th class="tabla-titulo">Dni</th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="cliente-botones">
+                <button id="cliente-botones-nuevo">Nuevo cliente</button>
+                <button id="cliente-botones-editar">Editar cliente</button>
+                <button id="cliente-botones-eliminar">Eliminar cliente</button>
+            </div>
+
+        </section>
+
+        <section class="producto" id="seccionProductos">
+            <div class="producto-titulo">
+                <h4>producto</h4>
+            </div>
+            <div class="producto-contenedor_tabla">
+                <table id="producto-contenedor_tabla-tabla">
+                    <thead>
+                        <th class="tabla-titulo">Id</th>
+                        <th class="tabla-titulo">Nombre</th>
+                        <th class="tabla-titulo">Marca</th>
+                        <th class="tabla-titulo">Precio c/u</th>
+                        <th class="tabla-titulo">Stock</th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="producto-botones">
+                <button id="producto-botones-nuevo">Nuevo producto</button>
+                <button id="producto-botones-editar">Editar producto</button>
+                <button id="producto-botones-eliminar">Eliminar producto</button>
+                <button id="producto-botones-bajoStock">Productos bajos de stock</button>
+            </div>
+
+        </section>
+
+        <section class="ventas" id="seccionVentas">
+            <div class="ventas-titulo">
+                <h4>ventas</h4>
+            </div>
+            <div class="ventas-contenedor_tabla">
+                <table id="ventas-contenedor_tabla-tabla">
+                    <thead>
+                        <th class="tabla-titulo">Id</th>
+                        <th class="tabla-titulo">Fecha</th>
+                        <th class="tabla-titulo">DNI cliente</th>
+                        <th class="tabla-titulo">Cantidad Productos</th>
+                        <th class="tabla-titulo">Total</th>
+                        <th class="tabla-titulo">Descripcion</th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="venta-botones">
+                <button id="btnVentaNuevaVenta">Nueva venta</button>
+                <button id="btnVentaEditarVenta">Editar venta</button>
+                <button id="btnVentaEliminarVenta">Eliminar venta</button>
+
+                <button id="btnVentaTraerMayor">Mayor venta</button>
+            </div>
+
+        </section>
+
+
+    </div>
+    <section class="modalEntradaDatos">
+
+        <div id="modalcliente" class="modalEntradaDatos-cliente">
+
+            <h2 id="modalEntradaDatos-cliente-titulo"></h2>
+            <form>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombreCli" name="nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellidoCli" name="apellido">
+                </div>
+
+                <div class="form-group">
+                    <label for="dni">DNI:</label>
+                    <input type="text" id="dniCli" name="dni" maxlength="8">
+                </div>
+
+                <div class="button-group">
+                    <button id="guardar" type="button" class="modalEntradaDatos-cliente-boton-guardar">Guardar</button>
+                    <button id="editar" type="button" class="modalEntradaDatos-cliente-boton-editar">Editar</button>
+                    <button id="cancelar" type="button"
+                        class="modalEntradaDatos-cliente-boton-cancelar">Cancelar</button>
+                </div>
+
+                <div id="error-box" class="error-box">
+                    El Cliente no es valido
+                </div>
+            </form>
+
+        </div>
+
+        <div id="modalProducto" class="modalEntradaDatos-producto">
+            <h3 id="modalProducto-titulo" class="modal-titulo"></h3>
+
+            <div class="input-grupo">
+                <label for="producto-nombre">Nombre:</label>
+                <input type="text" id="producto-nombre" class="input-estilo">
+            </div>
+
+            <div class="input-grupo">
+                <label for="producto-marca">Marca:</label>
+                <input type="text" id="producto-marca" class="input-estilo">
+            </div>
+
+            <div class="input-grupo">
+                <label for="producto-costo">Costo unitario:</label>
+                <input type="number" id="producto-costo" class="input-estilo" step="0.01">
+            </div>
+
+            <div class="input-grupo">
+                <label for="producto-stock">Cantidad disponible:</label>
+                <input type="number" id="producto-stock" class="input-estilo" step="1">
+            </div>
+
+            <div class="botones-grupo">
+                <button id="btnProdGuardar" type="button" class="btn-guardar">Guardar</button>
+                <button id="btnProdEditar" type="button" class="btn-editar">Editar</button>
+                <button id="btnProdCancelar" type="button" class="btn-cancelar">Cancelar</button>
+            </div>
+
+            <div id="producto-error-box" class="error-box">
+
+            </div>
+        </div>
+
+        <div class="modalEntradaDatos-venta"></div>
+
+    </section>
+
+    <section class="modalConfirmacion" id="modalConfirmacion">
+        <div class="modalConfirmacion-cuadro">
+            <h3>¿Eliminar cliente?</h3>
+            <p>Esta acción no se puede deshacer</p>
+
+            <div class="modalConfirmacion-botones">
+                <button id="btn-confirmar" class="btn-confirmar">Confirmar</button>
+                <button id="btn-cancelar" class="btn-cancelar">Cancelar</button>
+            </div>
+            <div class="error-box" id="error-eliminar-cliente"></div>
+
+        </div>
+    </section>
+
+    <section class="modalConfirmacion" id="modal-eliminar-producto">
+        <div class="modal-contenido">
+            <h3>¿Eliminar producto?</h3>
+            <p>Esta acción eliminará el producto permanentemente</p>
+
+            <div class="grupo-botones">
+                <button class="btn-confirmar" id="btnEliminarConfirmar">Confirmar</button>
+                <button class="btn-cancelar" id="btnEliminarCancelar">Cancelar</button>
+            </div>
+
+            <div class="error-box" id="error-eliminar-producto"></div>
+        </div>
+    </section>
+
+    <section class="modalDetallesVentas" id="modal-detalles-venta">
+        <div class="detalles-venta">
+            <h3>Detalles de Venta<span id="venta-codigo"></span></h3>
+
+            <div class="venta-info">
+                <div class="info-item">
+                    <span class="info-label">Fecha:</span>
+                    <span id="venta-fecha"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Total:</span>
+                    <span id="venta-total"></span>
+                </div>
+            </div>
+
+            <div class="cliente-info">
+                <h4>Datos del Comprador</h4>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Nombre:</span>
+                        <span id="cliente-nombre"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Apellido:</span>
+                        <span id="cliente-apellido"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">DNI:</span>
+                        <span id="cliente-dni"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de productos -->
+            <div class="productos-lista">
+                <h4>Productos Comprados</h4>
+                <div class="tabla-contenedor">
+                    <table id="tabla-productos" class="tabla-productos">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Producto</th>
+                                <th>Marca</th>
+                                <th>Precio Unidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Botón de cierre -->
+            <div class="modal-botones">
+                <button id="cerrar-detalles" class="btn-cerrar">Cerrar</button>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="modal-venta" id="modal-nueva-venta">
+        <div class="venta-contenido">
+            <h3 id="modal-venta-titulo"><button class="btn-cerrar" id="cerrar-nueva-venta">×</button></h3>
+
+            <!-- Selección de Cliente -->
+            <div class="seleccion-cliente">
+                <h4>Cliente</h4>
+                <div class="cliente-info-preview">
+                    <p id="cliente-seleccionado">No se ha seleccionado cliente</p>
+                </div>
+                <button class="btn-seleccionar" id="seleccionar-cliente">Seleccionar Cliente</button>
+            </div>
+
+            <!-- Selección de Productos -->
+            <div class="seleccion-productos">
+                <h4>Productos</h4>
+                <div class="productos-agregados">
+                    <table id="tabla-seleccion" class="tabla-seleccion">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-productos-seleccionados"></tbody>
+                    </table>
+                </div>
+                <button class="btn-seleccionar" id="agregar-productos">Agregar Productos</button>
+                <button class="btn-seleccionar" id="eliminar-producto">Eliminar Producto</button>
+            </div>
+
+            <!-- Resumen y acciones -->
+            <div class="resumen-acciones">
+                <div class="resumen-venta">
+                    <div class="resumen-item">
+                        <span>Total:</span>
+                        <span id="total-venta">$0.00</span>
+                    </div>
+                </div>
+                <div class="acciones-venta">
+                    <button class="btn-confirmar" id="finalizar-venta">Finalizar Venta</button>
+                    <button class="btn-editar" id="editar-venta">Editar Venta</button>
+                    <button class="btn-cancelar" id="cancelar-venta">Cancelar</button>
+                </div>
+            </div>
+
+            <!-- Cuadro de errores -->
+            <div class="error-box" id="error-nueva-venta"></div>
+        </div>
+    </div>
+
+    <!-- Modal Selección Cliente -->
+    <div class="modal-seleccion" id="modal-seleccion-cliente">
+        <div class="seleccion-contenido">
+            <h3>Seleccionar Cliente <button id="btnIntCerrarBuscarCliente" class="btn-cerrar">×</button></h3>
+            <!-- <div class="busqueda">
+                <input type="text" id="buscar-cliente" placeholder="Buscar por nombre o DNI...">
+            </div> -->
+            <div class="lista-clientes">
+                <table id="tabla-seleccion-cliente" class="tabla-seleccion">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-clientes"></tbody>
+                </table>
+            </div>
+            <div class="acciones-seleccion">
+                <button id="btnSeleccionarClienteVenta" class="btn-confirmar">Seleccionar cliente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Selección Productos -->
+    <div class="modal-seleccion" id="modal-seleccion-productos">
+        <div class="seleccion-contenido">
+            <h3>Seleccionar Productos <button id="btnIntCerrarBuscarProducto" class="btn-cerrar">×</button></h3>
+            <!-- <div class="busqueda">
+                <input type="text" id="buscar-producto" placeholder="Buscar producto...">
+            </div> -->
+            <div class="lista-productos">
+                <table id="tabla-interna-seleccion-productos" class="tabla-seleccion">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Producto</th>
+                            <th>Marca</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-productos-disponibles"></tbody>
+                </table>
+            </div>
+            <div class="acciones-seleccion">
+                <button id="btnSeleccionarProductoVenta" class="btn-confirmar">Agregar Selección</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-eliminar" id="modal-eliminar-venta">
+        <div class="modal-eliminar-contenido">
+            <h3>Eliminar Venta <span class="venta-id"></span></h3>
+
+            <!-- Advertencia -->
+            <div class="advertencia-eliminar">
+                ⚠️ Los productos y clientes relacionados se mantendrán en la base de datos
+            </div>
+
+            <!-- Detalles de la venta -->
+            <div class="detalles-eliminar">
+                <p>ID Venta: <span id="eliminar-venta-id">-</span></p>
+                <p>Fecha: <span id="eliminar-venta-fecha">-</span></p>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="modal-eliminar-botones">
+                <button id="confirmar-eliminar-venta" class="btn-int-confirmar-eliminar">Eliminar
+                    Definitivamente</button>
+                <button id="cancelar-eliminar-venta" class="btn-int-cancelar-eliminar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal mayor venta  -->
+    <div class="modalDetalles" id="modal-mayor-venta">
+        <div class="detalles-venta">
+            <h3>🏆 Mayor Venta</h3>
+
+            <div class="detalles-venta-info">
+                <div class="info-item">
+                    <span class="info-label">Código:</span>
+                    <span id="mayor-venta-id">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Cliente:</span>
+                    <span id="mayor-venta-cliente">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Productos:</span>
+                    <span id="mayor-venta-cantidad">-</span>
+                </div>
+                <div class="info-item destacado">
+                    <span class="info-label">Total:</span>
+                    <span id="mayor-venta-total">-</span>
+                </div>
+            </div>
+
+            <button class="btn-cerrar" id="int-confirmar-mayor-venta">Cerrar</button>
+        </div>
+    </div>
+
+
+    <script src="source.js" type="module"></script>
+</body>
+
+</html>

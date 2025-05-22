@@ -1,0 +1,955 @@
+/* Estilos Generales */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.navbar-botones {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.2rem;
+}
+
+.navbar-botones-boton {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #ecf0f1;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.navbar-botones-boton:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* Secciones Comunes */
+.secciones {
+    padding: 2rem;
+}
+
+[class$="-titulo"] h4 {
+    color: #2c3e50;
+    font-size: 1.6rem;
+    margin: 0 0 1.8rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #3498db;
+    display: inline-block;
+}
+
+[class$="-contenedor_tabla"] {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.tabla-titulo {
+    background-color: #3498db;
+    color: white;
+    padding: 1.2rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+}
+
+table tbody td {
+    padding: 1.2rem;
+    color: #34495e;
+}
+
+table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.fila_seleccionada{
+    background-color: #c8ddf2 !important;
+}
+
+/* Botones Comunes */
+[class$="-botones"] {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+[class$="-botones"] button {
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Estilos Específicos por Sección */
+/* Clientes */
+#seccionClientes{
+    display: none;
+}
+
+#seccionClientes [class$="-botones"] button:nth-child(1) {
+    background-color: #3498db;
+    color: white;
+}
+
+#seccionClientes [class$="-botones"] button:nth-child(2) {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#seccionClientes [class$="-botones"] button:nth-child(3) {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Productos */
+#seccionProductos {
+    /* display: none;  */
+   /* Oculto por defecto */
+}
+
+#seccionProductos [class$="-botones"] button:nth-child(1) {
+    background-color: #9b59b6;
+    color: white;
+}
+
+/* Ventas */
+#seccionVentas {
+    display: none;  
+    /* Oculto por defecto */
+}
+
+#seccionVentas [class$="-botones"] button:nth-child(1) {
+    background-color: #f1c40f;
+    color: #2c3e50;
+}
+
+/* Efectos Hover Generales */
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Clase para sección activa */
+.activa {
+    display: block !important;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/*modales*/
+
+/*Fondo negro*/
+.modalEntradaDatos{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 999;
+    display: none; 
+
+    justify-content: center;
+    align-items: center;
+
+}
+.activo{
+    display: flex;
+    background-color: rgba(0, 0, 0, .7);
+}
+
+/*Modal cliente*/
+/* Modal Cliente */
+#modalcliente.modalEntradaDatos-cliente {
+    display: none;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+#modalcliente h2 {
+    color: #2c3e50;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #34495e;
+    font-weight: 500;
+}
+
+#nombreCli,
+#apellidoCli,
+#dniCli {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+#nombreCli:focus,
+#apellidoCli:focus,
+#dniCli:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52,152,219,0.2);
+}
+
+/* Botones específicos */
+#guardar {
+    display: none;
+    background-color: #2ecc71;
+    color: white;
+}
+
+#editar {
+    display: none;
+    background-color: #3498db;
+    color: white;
+}
+
+#cancelar {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.button-group {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.button-group button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button-group button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Cuadro de errores */
+#error-box {
+    display: none;
+    padding: 12px;
+    margin: 1rem 0;
+    background-color: #fee;
+    border: 1px solid #f99;
+    border-radius: 6px;
+    color: #c00;
+    font-size: 0.9em;
+}
+
+#error-box.activo {
+    display: block;
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+/* Estilo para input DNI */
+#dniCli {
+    max-width: 150px;
+}
+
+
+/* modal confirmacion de borrado*/
+.modalConfirmacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .7);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modalConfirmacion-cuadro {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+.modalConfirmacion-cuadro h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1.4em;
+}
+
+.modalConfirmacion-cuadro p {
+    margin: 0 0 25px 0;
+    color: #666;
+}
+
+.modalConfirmacion-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-confirmar {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-confirmar:hover {
+    background-color: #27ae60;
+}
+
+#editar-venta,
+#finalizar-venta{
+    display: none;
+}
+
+/* Modal producto */
+
+.modalEntradaDatos-producto {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 450px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: none;
+}
+
+.modal-titulo {
+    color: #2c3e50;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.4em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.input-grupo {
+    margin-bottom: 1.2rem;
+}
+
+.input-grupo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #34495e;
+    font-weight: 500;
+}
+
+.input-estilo {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.input-estilo:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52,152,219,0.2);
+}
+
+.botones-grupo {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.btn-guardar,
+.btn-editar {
+    background-color: #2ecc71;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    display: none;
+}
+
+.btn-cancelar {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-guardar:hover,
+.btn-cancelar:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Estilos para inputs numéricos */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+/*Cuadro errores para los productos*/
+.error-box {
+    display: none;
+    padding: 12px;
+    margin: 15px 0;
+    background-color: #fee;
+    border: 1px solid #f99;
+    border-radius: 6px;
+    color: #c00;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.error-box.activo {
+    display: block;
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+/*Modal confirmacion borrar producto*/
+
+#modal-eliminar-producto .modal-contenido {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+#modal-eliminar-producto h3 {
+    color: #e74c3c;
+    margin-top: 0;
+}
+
+#modal-eliminar-producto .btn-confirmar {
+    background-color: #4483e2;
+}
+
+#modal-eliminar-producto .btn-cancelar {
+    background-color: #e74c3c;
+}
+
+/* Ventas */
+
+/* boton para descripcion de ventas */
+.btn-detalles {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.btn-detalles:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-detalles:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.btn-detalles::before {
+    content: "ℹ️"; /* Puedes reemplazar con un icono */
+    font-size: 0.9em;
+}
+
+#ventas-contenedor_tabla-tabla td:last-child {
+    text-align: center;
+    padding: 8px !important;
+}
+
+/* Modal para mostrar detalle de venta*/
+
+.modalDetallesVentas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.detalles-venta {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Encabezado */
+.detalles-venta h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 1rem;
+}
+
+/* Secciones de información */
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #34495e;
+}
+
+/* Tabla de productos */
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.tabla-productos th {
+    background-color: #3498db;
+    color: white;
+    padding: 0.8rem;
+    text-align: left;
+}
+
+.tabla-productos td {
+    padding: 0.8rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.tabla-contenedor {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Botón cerrar */
+.btn-cerrar {
+    background-color: #95a5a6;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: all 0.3s;
+}
+
+.btn-cerrar:hover {
+    background-color: #7f8c8d;
+}
+
+/* Diseño responsive */
+@media (max-width: 650px) {
+    .detalles-venta {
+        width: 90%;
+        padding: 1rem;
+    }
+}
+
+/* Creacion de venta*/
+/* modal para crear venta*/
+.modal-venta, .modal-seleccion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.venta-contenido, .seleccion-contenido {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Encabezado modal */
+h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 1rem;
+}
+
+/* Secciones principales */
+.seleccion-cliente, .seleccion-productos {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 1px solid #ecf0f1;
+    border-radius: 8px;
+}
+
+.cliente-info-preview {
+    padding: 1rem;
+    background: #f8f9fa;
+    margin: 1rem 0;
+    border-radius: 6px;
+}
+
+/* Tablas de selección */
+.tabla-seleccion {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+
+}
+
+.tabla-seleccion th {
+    background: #3498db;
+    color: white;
+    padding: 0.8rem;
+}
+
+.tabla-seleccion td {
+    padding: 0.8rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+/* Botones de acción */
+.btn-seleccionar {
+    background: #2ecc71;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#eliminar-producto{
+    background: #e74c3c;
+}
+
+.btn-seleccionar:hover {
+    background: #27ae60;
+}
+
+/* Campos de búsqueda */
+.busqueda input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+}
+
+/* Resumen de venta */
+.resumen-venta {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.resumen-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Z-index para modales anidados */
+.modal-seleccion {
+    z-index: 1001;
+}
+
+/* Efectos hover para filas seleccionables */
+.tabla-seleccion tr:hover {
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+/* Estilos para cantidad en productos */
+input[type="number"].cantidad-producto {
+    width: 60px;
+    padding: 0.3rem;
+    text-align: center;
+}
+
+.acciones-venta{
+    display: flex;
+    gap: 0.3rem;;
+}
+
+
+/* estilos de cantidad de venta */
+/* Estilos para el componente */
+.input-spinner {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.input-spinner-btn {
+    padding: 2px 8px;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.input-spinner-btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.input-spinner-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #bdc3c7;
+}
+
+.input-spinner-field {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    padding: 4px;
+    pointer-events: none;
+}
+
+/*boton eliminar venta*/
+
+/* Estilos base del modal */
+.modal-eliminar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-eliminar-contenido {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 450px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Encabezado */
+.modal-eliminar-contenido h3 {
+    color: #e74c3c;
+    margin: 0 0 1.5rem 0;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Advertencia */
+.advertencia-eliminar {
+    background-color: #fef9e7;
+    border: 1px solid #f4d03f;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    color: #b7950b;
+    font-size: 0.9em;
+}
+
+/* Detalles de la venta */
+.detalles-eliminar {
+    margin: 1.5rem 0;
+    color: #666;
+}
+
+.detalles-eliminar p {
+    margin: 0.5rem 0;
+}
+
+/* Botones */
+.modal-eliminar-botones {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.btn-confirmar-eliminar {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-confirmar-eliminar:hover {
+    background-color: #c0392b;
+}
+
+.btn-cancelar-eliminar {
+    background-color: #95a5a6;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-cancelar-eliminar:hover {
+    background-color: #7f8c8d;
+}
+
+/* Modal para mayor venta*/
+#modal-mayor-venta.modalDetalles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegurar que está por encima de todo */
+}
+
+#modal-mayor-venta .detalles-venta {
+    position: relative; /* Necesario para contenido interno */
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 400px;
+    margin: 20px; /* Para responsive */
+}
+.detalles-venta-info {
+    margin: 1.5rem 0;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+}
+
+.info-item.destacado {
+    background-color: #e8f4fc;
+    border: 2px solid #3498db;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+#mayor-venta-total {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.btn-cerrar {
+    background-color: #95a5a6;
+    width: 100%;
+    margin-top: 1.5rem;
+}
